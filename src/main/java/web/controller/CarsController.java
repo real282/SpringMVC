@@ -1,25 +1,22 @@
 package web.controller;
 
-import Model.Cars;
-import Model.Car;
+import Service.CarsServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class CarsController {
 
     @GetMapping(value = "/cars")
-    public String printCars(HttpServletRequest request, Model model) {
-        int count = Integer.parseInt(request.getParameter("count"));
-        System.out.println(Cars.getCars(count).toString());
-        model.addAttribute("messages", Cars.getCars(count));
+    public String printCars(@RequestParam("count") int count, Model model) {
+        CarsServiceImp carsService = new CarsServiceImp();
+        System.out.println(carsService.getCars(count).toString());
+        model.addAttribute("messages", carsService.getCars(count));
         return "cars";
     }
 }
