@@ -1,6 +1,7 @@
 package Service;
 
 import Model.Car;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
