@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class CarsController {
 
+    private final CarsServiceImp carsService;
+
     @Autowired
-    private CarsServiceImp carsService;
+    public CarsController(CarsServiceImp carsService) {
+        this.carsService = carsService;
+    }
 
     @GetMapping(value = "/cars")
     public String printCars(@RequestParam("count") int count, Model model) {
